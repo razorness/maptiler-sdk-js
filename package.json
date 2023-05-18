@@ -1,20 +1,12 @@
 {
   "name": "modular-maptiler-sdk",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "The Javascript & TypeScript map SDK tailored for MapTiler Cloud",
   "module": "dist/maptiler-sdk.mjs",
   "types": "dist/maptiler-sdk.d.ts",
   "style": "dist/maptiler-sdk.css",
   "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": {
-      "import": "./dist/maptiler-sdk.mjs"
-    },
-    "./dist/maptiler-sdk.css": {
-      "import": "./dist/maptiler-sdk.css"
-    }
-  },
   "files": [
     "dist/**/*",
     "src/**/*",
