@@ -1,4 +1,4 @@
-import type { Map } from 'maplibre-gl';
+import type { Map, SymbolLayerSpecification } from 'maplibre-gl';
 
 /**
  * Languages. Note that not all the languages of this list are available but the compatibility list may be expanded in the future.
@@ -165,7 +165,7 @@ export function setPrimaryLanguage(map: Map, language: string) {
   ];
 
   for (let i = 0; i < layers.length; i += 1) {
-    const layer = layers[i];
+    const layer = layers[i] as SymbolLayerSpecification;
     const layout = layer.layout;
 
     if (!layout) {
@@ -306,7 +306,7 @@ export function setSecondaryLanguage(map: Map, language: string) {
   let regexMatch;
 
   for (let i = 0; i < layers.length; i += 1) {
-    const layer = layers[i];
+    const layer = layers[i] as SymbolLayerSpecification;
     const layout = layer.layout;
 
     if (!layout) {
@@ -410,8 +410,11 @@ export function setSecondaryLanguage(map: Map, language: string) {
 
 export {
   Language,
-  LanguageString,
-  LanguageKey,
   getBrowserLanguage,
   isLanguageSupported,
 };
+
+export type {
+  LanguageString,
+  LanguageKey,
+}
