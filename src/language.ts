@@ -139,7 +139,7 @@ function getBrowserLanguage(): LanguageString {
     : Language.LATIN;
 }
 
-export function setPrimaryLanguage(map: Map, language: string) {
+function setPrimaryLanguage(map: Map, lang: string) {
 
   const layers = map.getStyle().layers;
 
@@ -156,7 +156,7 @@ export function setPrimaryLanguage(map: Map, language: string) {
   // Regex to capture when there are more info, such as mountains elevation with unit m/ft
   const strMoreInfoRegex = /^(.*)({\s*name\s*(:\s*(\S*))?\s*})(.*)$/;
 
-  const langStr = language ? `name:${language}` : "name"; // to handle local lang
+  const langStr = lang ? `name:${lang}` : "name"; // to handle local lang
   const replacer = [
     "case",
     ["has", langStr],
@@ -289,7 +289,7 @@ export function setPrimaryLanguage(map: Map, language: string) {
 
 }
 
-export function setSecondaryLanguage(map: Map, language: string) {
+function setSecondaryLanguage(map: Map, lang: string) {
 
   const layers = map.getStyle().layers;
 
@@ -356,7 +356,7 @@ export function setSecondaryLanguage(map: Map, language: string) {
             strLanguageRegex.exec(elem.toString())
         ) {
           if (languagesAlreadyFound === 1) {
-            newProp[j] = `{name:${language}}`;
+            newProp[j] = `{name:${lang}}`;
             break; // we just want to update the secondary language
           }
 
@@ -370,7 +370,7 @@ export function setSecondaryLanguage(map: Map, language: string) {
             strLanguageInArrayRegex.exec(elem[1].toString())
         ) {
           if (languagesAlreadyFound === 1) {
-            newProp[j][1] = `name:${language}`;
+            newProp[j][1] = `name:${lang}`;
             break; // we just want to update the secondary language
           }
 
@@ -381,7 +381,7 @@ export function setSecondaryLanguage(map: Map, language: string) {
             elem[0].trim().toLowerCase() === "case"
         ) {
           if (languagesAlreadyFound === 1) {
-            newProp[j] = ["get", `name:${language}`]; // the situation with 'case' is supposed to only happen with the primary lang
+            newProp[j] = ["get", `name:${lang}`]; // the situation with 'case' is supposed to only happen with the primary lang
             break; // but in case a styling also does that for secondary...
           }
 
@@ -400,7 +400,7 @@ export function setSecondaryLanguage(map: Map, language: string) {
             textFieldLayoutProp.toString()
         )) !== null
     ) {
-      const langStr = language ? `name:${language}` : "name"; // to handle local lang
+      const langStr = lang ? `name:${lang}` : "name"; // to handle local lang
       newProp = `{name${regexMatch[1] || ""}}${regexMatch[3]}{${langStr}}`;
       map.setLayoutProperty(layer.id, "text-field", newProp);
     }
@@ -412,6 +412,8 @@ export {
   Language,
   getBrowserLanguage,
   isLanguageSupported,
+  setPrimaryLanguage,
+  setSecondaryLanguage
 };
 
 export type {
