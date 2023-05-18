@@ -168,7 +168,7 @@ import type { Matrix2 } from "./Point";
 
 // Importing enums and configs
 import { config, SdkConfig } from "./config";
-import { Language, LanguageString, LanguageKey } from "./language";
+import { Language, LanguageString, LanguageKey, setPrimaryLanguage, setSecondaryLanguage } from "./language";
 import type { Unit } from "./unit";
 
 // Exporting types
@@ -222,6 +222,8 @@ export {
   MapStyle,
   Language,
   LanguageGeocoding,
+  setPrimaryLanguage,
+  setSecondaryLanguage,
   Point,
   ReferenceMapStyle,
   MapStyleVariant,
